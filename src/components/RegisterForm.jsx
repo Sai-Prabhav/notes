@@ -1,0 +1,68 @@
+import React, { useState } from "react";
+import { register } from "../servises";
+import { data } from "react-router-dom";
+
+const RegisterForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Handle registration logic here
+    console.log("Username:", username);
+    console.log("Password:", password);
+
+    const data = await register(username, password);
+    console.log(data[1])
+    if (!data[1]) {
+      setError(data[0]["message"]);
+    }
+    else {
+        setError("")
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center ">
+      <div className="w-xl m-5 pl-15 pr-15 pt-2 rounded ">
+        <h1 className="text-2xl font-bold mb-4">Register</h1>
+        <form className="flex flex-col">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+          {error!=="" && <>{error}</>}
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            onClick={async (e) => {
+              await handleSubmit(e);
+            }}
+          >
+            Register
+          </button>
+        </form>
+        <p className="mt-4">
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-500 hover:underline">
+            Login here
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default RegisterForm;
