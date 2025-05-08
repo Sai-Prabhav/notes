@@ -1,11 +1,11 @@
 import { useNoteContext } from "../context/NoteContext";
 
 const LogoutButton = () => {
-  const { setToken, setNotes } = useNoteContext();
+  const { setToken, setNotes,navigation } = useNoteContext();
   const handelLogout = async () => {
     setToken("");
     setNotes({});
-    window.location.href = "/";
+    navigation("/");
   };
   return (
     <button

@@ -34,11 +34,11 @@ const get_notes = async (token) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ token, })
+    body: JSON.stringify({ token }),
   });
   const data = await response.json();
-  console.log([{ ...(data) }, response.ok]);
-  return [{ ...( data) }, response.ok];
+  console.log([{ ...data }, response.ok]);
+  return [{ ...data }, response.ok];
 };
 
 const save_notes = async (token, notes) => {
@@ -47,11 +47,11 @@ const save_notes = async (token, notes) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({  token, notes }),
+    body: JSON.stringify({ token, notes }),
   });
   const data = await response.json();
-  console.log([{ ...(data) }, response.ok]);
-  return [{ ...(data) }, response.ok];
+  console.log([{ ...data }, response.ok]);
+  return [{ ...data }, response.ok];
 };
 
 export { login, register, get_notes, save_notes };

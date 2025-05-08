@@ -4,8 +4,8 @@ import { data } from "react-router-dom";
 import { useNoteContext } from "../context/NoteContext";
 
 const LoginForm = () => {
-  const { token,setToken, setNotes } = useNoteContext();
-
+  const { token,setToken, setNotes ,navigate} = useNoteContext();
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -72,7 +72,7 @@ const LoginForm = () => {
         </form>
         <p className="mt-4">
           dont have an account?
-          <a className="pl-2 text-blue-600" href="/register">
+          <a className="pl-2 text-blue-600" onClick={() => (navigate("/register"))}>
             register here{" "}
           </a>
         </p>

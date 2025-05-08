@@ -1,9 +1,11 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NoteContext = createContext();
 
 
 export const NoteProvider = ({ children }) => {
+  let navigate = useNavigate();
   const [notes, setNotes] = useState(() => {
     const savedNotes = localStorage.getItem("notes");
     return savedNotes
@@ -80,6 +82,7 @@ export const NoteProvider = ({ children }) => {
         updateNoteContent,
         token,
         setToken,
+        navigate
       }}
     >
       {children}

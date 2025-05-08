@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { register } from "../servises";
 import { data } from "react-router-dom";
+import { useNoteContext } from "../context/NoteContext";
+
 
 const RegisterForm = () => {
+    const { navigate } = useNoteContext();
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +23,8 @@ const RegisterForm = () => {
       setError(data[0]["message"]);
     }
     else {
-        setError("")
+        setError("you have registered successfully ");
+        return navigate("/login");
     }
   };
 
@@ -56,7 +61,8 @@ const RegisterForm = () => {
         </form>
         <p className="mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <a onClick={() => navigate("/login")
+          } className="text-blue-500 hover:underline">
             Login here
           </a>
         </p>
