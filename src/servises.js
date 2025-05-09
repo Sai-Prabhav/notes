@@ -1,9 +1,9 @@
 import { data } from "react-router-dom";
 
-const URI = "https://ancient-demetra-sai-prabhav-505b893a.koyeb.app/";
+const URI = "https://notes-api-auoj.onrender.com";
 
 const login = async (name, password) => {
-  const response = await fetch(`https://${URI}/login`, {
+  const response = await fetch(`${URI}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,12 +11,15 @@ const login = async (name, password) => {
     body: JSON.stringify({ name, password }),
   });
 
+
   const data = await response.json();
   return [{ ...data }, response.ok];
 };
 
 const register = async (name, password) => {
-  const response = await fetch(`https://${URI}/register`, {
+  console.log(JSON.stringify({ name, password }));
+  
+  const response = await fetch(`${URI}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +34,7 @@ const register = async (name, password) => {
 };
 
 const get_notes = async (token) => {
-  const response = await fetch(`https://${URI}/get-notes`, {
+  const response = await fetch(`${URI}/get-notes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -44,7 +47,7 @@ const get_notes = async (token) => {
 };
 
 const save_notes = async (token, notes) => {
-  const response = await fetch(`https://${URI}/save-notes`, {
+  const response = await fetch(`${URI}/save-notes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
